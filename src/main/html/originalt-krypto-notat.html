@@ -1,0 +1,689 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>EFN Notat: Kryptografi, kriminalitet og personvern
+</title>
+<base target="_top">
+</head>
+ 
+<body bgcolor="#ffffff" text="#000000">
+
+<img src="efnlogo2.gif" alt="EFNs logo"
+width="158" height="56" border="0">
+<br /><br />
+
+<center>
+<h3>KRYPTOGRAFI, KRIMINALITET OG PERSONVERN
+</h3>
+<br />
+
+<p>
+Copyright <a href="mailto:rmz@rmz.priv.no">Bj&oslash;rn Remseth</a> og
+<a href="mailto:thomas@ifi.uio.no">Thomas Gramstad</a></p>
+
+<b><font size=2>
+Dette dokumentet er tilgjengelig under 
+<a href="http://www.gnu.org/copyleft/fdl.html">
+GNU Free Documentation License</a>.
+</font></b>
+
+</center><br /><br />
+
+
+<ol>
+<li><b>
+<a href="#part1">HVA ER KRYPTERING?</a></b><br /></li>
+<li><b>
+<a href="#part2">'SVAK' KRYPTOGRAFI</a></b><br /></li>
+<li><b>
+<a href="#part3">'STERK' KRYPTOGRAFI</a></b><br /></li>
+<li><b>
+<a href="#part4">STERK KRYPTOGRAFI: EN LIVSN&Oslash;DVENDIGHET?</a></b><br /></li>
+<li><b>
+<a href="#part5">HVA BETYR KRYPTERING FOR DEG?
+</a></b><br /></li>
+<li><b>
+<a href="#part6">TILFELLER DER DET ER &Oslash;NSKELIG &Aring;
+KUNNE SKAFFE SEG TILGANG TIL HEMMELIGE KODEN&Oslash;KLER</a></b><br /></li>
+<li><b>
+<a href="#part7">TILFELLER DER DET ER NYTTIG &Aring; HA
+HEMMELIGE KODEN&Oslash;KLER SOM ALDRI BLIR GJORT KJENT</a></b><br /></li>
+<li><b>
+<a href="#part8">N&Oslash;KKELDEPONERING</a></b><br /></li>
+<li><b>
+<a href="#part9">HVORFOR ER DET I PRAKSIS UMULIG &Aring; FORHINDRE
+BRUK AV STERK KRYPTERING?</a></b><br /></li>
+<li><b>
+<a href="#part10">HVORDAN KAN KRYPTERING FORHINDRE DATAKRIMINALITET?
+</a></b><br /></li>
+<li><b>
+<a href="#part11">KRYPTERINGSMETODER SOM KAN AVLYTTES</a></b><br /></li>
+<li><b>
+<a href="#part13">NHDS RAPPORT OM UTVIKLING AV NASJONAL
+KRYPTOPOLITIKK (6. APRIL 2001)</a></b><br /></li>
+<li><b>
+<a href="#part12">REFERANSER</a></b></li>
+</ol>
+<br /><br />
+
+<h4><a name="part1">HVA ER KRYPTERING?</a></h4>
+
+<p>Tradisjonelt har man med "kryptering" ment koding av
+informasjon p&aring; en slik m&aring;te at den kun kan dekodes
+(dekrypteres) og leses av personer som kjenner en spesiell
+"n&oslash;kkel".  Ordet "kryptografi" er avledet av gresk og betyr
+"skjult skrift".</p>
+
+<p> Kryptering brukes ogs&aring; for autentisering av
+informasjon. "Digitale signaturer" benyttes for at mottakeren av
+en melding skal kunne forsikre seg om identiteten til avsenderen
+og at meldingen ikke er endret av uvedkommende. Slik virker
+digitale signaturer omtrent som h&aring;ndskrevne signaturer
+p&aring; papirdokumenter, men med den forskjellen at man ikke
+beh&oslash;ver &aring; v&aelig;re skrift-ekspert for &aring;
+vurdere om en signatur er ekte, alt som kreves er at man har en
+datamaskin som kan kj&oslash;re en ganske lite program.</p>
+<br />
+
+<h4><a name="part2">'SVAK' KRYPTOGRAFI</a></h4>
+
+<p>Krypto-algoritmer har forskjellig styrke, fra helt trivielle
+til umulig &aring; knekke. En 'svak' algoritme er ikke i stand til
+&aring; motst&aring; et seri&oslash;st angrep.</p>
+
+<p>Helt tilbake i oldtiden finner man eksempler p&aring; svake
+kryptosystemer, et av de mest kjente tillegges Julius
+C&aelig;sar. Da C&aelig;sar &oslash;nsket &aring; sende viktige
+meldinger til sine offiserer ute i felten krypterte han dem
+(alts&aring; kodet dem) ved &aring; flytte alle bokstavene i
+alfabetet tre plasser til h&oslash;yre. P&aring; denne m&aring;ten
+ville meldingen "Angrip ved daggry" bli "Dqjuls yhg
+gdjju&oslash;f", idet en "A" blir til en "D", en "B" blir til en
+"E" osv. N&aring;r offiserene - som kjente til C&aelig;sars system
+- fikk den krypterte meldingen, dekrypterte de den ved &aring;
+flytte bokstaven tre plasser til venstre.</p>
+
+<p>Dersom man &oslash;nsker &aring; bruke et slikt system
+bestemmer man seg for hvor mange plasser man skal flytte
+bokstavene, f.eks. 3, og vi sier da at 3 er n&oslash;kkelen.</p>
+
+<p>Idag gir C&aelig;sars system ingen sikkerhet, fordi det er lett
+&aring; knekke (dvs.  selv om fienden ikke vet hvor mange plasser
+bokstavene er flyttet kan de meget raskt finne det ut ved hjelp av
+regnekraften til datamaskiner). Dette er derfor et eksempel
+p&aring; en svak kode.</p>
+
+<p>P&aring; den annen side, selv helt trivielle koder har en
+misjon: Du kan ikke i ettertid si at du 'tilfeldigvis' kom over
+noe n&aring;r det faktisk var kryptert.  Ett eksempel er 'rot13'
+(C&aelig;sar-rotasjon tretten plasser), som brukes mye p&aring;
+Internett. Denne koden brukes til &aring; si fra at 'her kommer
+det en melding du kanskje ikke vil lese, s&aring; bruk rot13 hvis
+du virkelig vil lese den'.</p>
+
+<p>Svak kryptering er alts&aring; &aring; kode en melding slik at
+det er mer eller mindre lett for andre &aring; lese den - det
+kreves ikke s&aring; store ressurser for &aring; knekke koden. Fra
+noen millisekunder (for C&aelig;sar-koder) til et par uker
+kj&oslash;retid p&aring; en en klynge av moderne PC-er eller en
+enkelt superdatamaskin (for 40 bit RC4 brukt bl.a. av Netscape),
+er ofte nok.</p>
+
+<p>Det amerikanske forsvarsdepartementet har definert
+krypto-algoritmer med n&oslash;kkel-"styrke" p&aring; 40 bits
+eller mindre som 'svake'. Det finnes begrensninger p&aring;
+eksport av svake krypto-produkter, men mange flere og mer
+omfattende begrensninger for sterke krypto-produkter.
+Krypteringsmodulene i mange kommersielle programmer er derfor
+svake - med 40 bit n&oslash;kler eller mindre.  Dette er godt nok
+for mange form&aring;l, men hjelper lite mot en seri&oslash;s
+angriper med en del prosessorkraft tilgjengelig.</p>
+
+<p>Mange 'hemmelige koder' er i virkeligheten 'svake' koder, siden
+det er kjent hvordan de knekkes p&aring; kort tid, selv om man
+ikke har f&aring;tt utdelt koden&oslash;kkelen.</p>
+<br />
+
+<h4><a name="part3">'STERK' KRYPTOGRAFI</a></h4>
+
+<p>``Sterk kryptering'' inneb&aelig;rer &aring; kode en melding
+slik at det er sv&aelig;rt vanskelig for andre &aring; lese den,
+selv om de vet hvilken metode som har blitt brukt for &aring;
+kryptere den, men uten at de vet hvilken koden&oslash;kkel som ble
+brukt.</p>
+
+<p>Med 'sv&aelig;rt vanskelig' menes her at det ikke skal finnes
+noen vesentlig enklere m&aring;te &aring; dekode meldingen
+p&aring; enn &aring; lete gjennom samtlige mulige
+koden&oslash;kler, teste hver eneste en, og stoppe f&oslash;rst
+n&aring;r den riktige n&oslash;kkelen er funnet.  Dette krever
+sv&aelig;rt stor regnekraft - store datamaskinressurser - og i
+gjennomsnitt vil det v&aelig;re n&oslash;dvendig &aring; lete
+gjennom halvparten av alle n&oslash;klene f&oslash;r man finner
+den man leter etter.</p>
+
+<p>Styrken p&aring; en algoritme er delvis gitt matematisk ved
+tiden det vil ta &aring; lete gjennom samtlige mulige
+n&oslash;kler, og dels ved de matematiske metodene som er brukt
+for &aring; konstruere algoritmen slik at systematisk leting etter
+n&oslash;kkelen (som er en langsom metode) ogs&aring; blir den
+enkleste metoden.</p>
+
+<p>Lenger n&oslash;kkel-lengder blir raskt vanskeligere &aring;
+knekke, og "n&oslash;kler" som er like lange som meldingen er
+beviselig umulig &aring; knekke uten &aring; stjele
+koden&oslash;kkelen. Maksimalt sikre krypteringmetoder brukes kun
+i spesielle tilfeller, f.eks. for &aring; utveksle n&oslash;kler
+til mindre sikre (men fremdeles sterke) metoder.</p>
+
+<p>Krypto-algoritmer kan ogs&aring; v&aelig;re tilsynelatende
+sv&aelig;rt sterke, men likevel inneholde svakheter som
+gj&oslash;r at en angriper kan finne snarveier. For &aring; regnes
+som sikker m&aring; en algoritme m&aring; kunne motst&aring;
+angrep der angriperen kjenner b&aring;de klarteksten og den
+krypterte teksten, kanskje til og med har anledning til &aring;
+velge klartekster for kryptering. N&oslash;kkelen kan imidlertid
+antas &aring; v&aelig;re hemmelig, men den skal til gjengjeld
+v&aelig;re den eneste delen av kryptosystemet som er
+hemmeligholdt.</p>
+
+<p>DES (Data Encryption Standard), som er den mest brukte
+algoritmen i dag, har en n&oslash;kkellengde p&aring; 56 bits, og
+m&aring; idag regnes som middels sterk. Selv dette vil i
+l&oslash;pet av f&aring; &aring;r v&aelig;re for lite
+pga. utvikling av raskere utstyr, og nye, sterke, algoritmer
+bruker gjerne minst 80 bits. Mange krypto-algoritmer er
+hemmelige. Dette vanskeliggj&oslash;r selvf&oslash;lgelig et
+angrep, men det gj&oslash;r det ogs&aring; umulig for
+utenforst&aring;ende &aring; evaluere styrken av algoritmen. Norsk
+Standard Kryptoalgoritme (NSK) er ett eksempel p&aring; en
+hemmelig algoritme. NSK er spesifisert som en meget sterk
+algoritme. I sin almindelighet skal en v&aelig;re forsiktig med
+&aring; stole p&aring; hemmelige algoritmer, siden en ikke vet om
+designerne kan jobben sin godt nok, eller om de bevisst eller
+ubevisst har lagt inn bakd&oslash;rer eller andre
+feller. Hemmelige algoritmer m&aring; implementeres i
+spesialelektronikk. Det er umulig &aring; hemmeligholde en metode
+som er implementert i programkode.</p>
+
+<p>Det er her instruktivt &aring; se hva som skjedde med DES (Data
+Encryption Standard) algoritmen.  DES ble p&aring; midten av
+syttitallet den f&oslash;rste offentlig tilgjengelige algoritmen
+som ble sertifisert som sikker av det amerikanske National
+Security Agency (NSA), som ikke gj&oslash;r annet enn &aring;
+utvikle og knekke kodesystemer.  NSA foreslo endel endringer i det
+orginale designet som de sa ville gj&oslash;re det sikrere, men de
+ville ikke si hvorfor, det var hemmelig.  I 1990 publiserte to
+Israelere en metode kalt "Differensial kryptoanalyse" som
+p&aring;viste fundamentale svakheter i DES, svakheter som ville
+gjort den helt ubrukelig som en sterk algoritme, hvis ikke
+endringene NSA foreslo hadde blitt tatt inn i designet.  Det var
+alts&aring; mer enn femten &aring;r skille mellom NSAs kjennskap
+til differensial kryptoanalyse og den offentlige publikasjonen.
+Vi vet ingen ting om hvilke metoder de i dag holder hemmelige, og
+hvordan disse er anvendbare p&aring; algoritmer som er kjent i
+dag. Det vi vet er at NSA og deres s&oslash;sterorganisasjoner er
+veldig dyktige, er blant verdens st&oslash;rste arbeidsgivere for
+matematikere og kodeeksperter, og at det er dumt &aring;
+undervurdere dem. Den beste sikringen vi har er &aring; stole
+p&aring; de kodeekspertene som ikke jobber for dem til sammen er i
+stand til &aring; sjekke i alle fall noen algoritmer slik at vi er
+rimelig sikre p&aring; at de ikke er mulige &aring; knekke. For
+&aring; f&aring; til dette kreves &aring;penhet om algoritmene, og
+derfor er det i dag ogs&aring; flere gode og offentlig kjente
+algoritmer (DES, IDEA og Blowfish er blant disse).</p>
+
+<p>En god krypteringsmetode har derfor et sv&aelig;rt stort antall
+mulige n&oslash;kler. En middels god metode som DES har ca
+70.000.000.000.000.000 eller 70 millioner milliarder n&oslash;kler
+(56 bit). Dette er imidlertid et forsvinnende lite antall i
+forhold til bedre krypterings-metoder: IDEA, som bl.a. brukes i
+PGP har 128 bit og er dermed mye mer enn hundre millioner
+milliarder ganger sterkere enn DES. Hvis en s&oslash;kte gjennom
+en milliard n&oslash;kler i sekundet, ville det da fremdeles ta ti
+tusen milliarder milliarder &aring;r &aring; knekke koden. Til
+sammenligning mener man at solen kun har fem milliarder &aring;r
+igjen &aring; leve.</p>
+
+<p>Grunnen til at en slik n&oslash;kkel regnes som sikker er
+alts&aring; at det per idag kreves mere store maskin- og
+tidsressurser for &aring; bryte koden enn det som finnes totalt
+p&aring; jorden, eller vil finnes her i overskuelig tid.</p>
+
+<p>For &aring; oppn&aring; sterk kryptering er det ikke nok
+&aring; benytte en sterk krypteringsmetode. Det finnes mange
+eksempler p&aring; at systemer der en sikker krypteringsmetode er
+brukt p&aring; feil m&aring;te slik at svakheter er blitt
+innf&oslash;rt i totalsystemet.</p>
+<br />
+
+<h4><a name="part4">STERK KRYPTOGRAFI: EN LIVSN&Oslash;DVENDIGHET?
+</a></h4>
+
+<p>"Kryptering" omfatter en stor gruppe mekanismer og
+dataprogrammer. Generelt brukes de til &aring; holde ting
+hemmelige, men de brukes ogs&aring; til &aring; lage digitale
+signaturer, slik at det er mulig &aring; forsikre seg om at den
+som st&aring;r oppf&oslash;rt som avsender virkelig er avsenderen.</p>
+
+<p>En digital signatur sikrer integriteten av en melding, slik at
+du kan v&aelig;re sikker p&aring; at det du mottar, er det samme
+som avsenderen skrev.</p>
+
+<p>Kryptering er alts&aring; som en <b>forseglet konvolutt:
+</b></p>
+
+<ul>
+   <li> Du kan legge hva som helst inne i den.</li>
+   <li> Du kan signere den og forsegle den slik at mottager er
+        sikker p&aring; at kun du kan ha forseglet den.</li>
+   <li> Videre kan du adressere konvolutten p&aring; en slik
+        m&aring;te at kun mottager kan &aring;pne den og lese
+        innholdet.</li>
+</ul>
+
+En ukryptert melding derimot, er som et postkort.  Alle som kikker
+p&aring; postkortet kan lese det.
+Noen anvendelser av kryptering:
+
+<ul>
+   <li> <b>Privatliv.</b> Du kan skrive ned ting om ditt
+        privatliv, og v&aelig;re sikker p&aring; at ingen - eller
+        ingen andre enn de du vil - kan lese dem.</li>
+   <li> <b>Bedriftshemmeligheter.</b> Du kan skrive ned
+        bedriftshemmeligheter og v&aelig;re sikker p&aring; at
+        ingen - eller ingen andre enn de du vil - kan lese dem.</li>
+   <li> <b>Autentisering.</b> Datafiler kan signeres
+        elektronisk, slik at det er mulig &aring; vite at filene
+        faktisk kommer fra produsenten og ingen annen.</li>
+   <li> <b>Integritet.</b> Integritet er en konsekvens av
+        autentisering: Hvis du er sikker p&aring; at du kan stole
+        p&aring; avsenderen, da kan du v&aelig;re sikker p&aring;
+        at innholdet - f.eks. et dataprogram - ikke er manipulert
+        med, at det f.eks. ikke inneholder virus.</li>
+   <li> <b>Tilgjengelighet.</b> Siden du kan stole p&aring;
+        at alle delene av datasystemet ditt har ubrutt integritet,
+        kan du ogs&aring; garantere h&oslash;yere
+        tilgjengelighet. Dersom du tror du har blitt angrepet av
+        et virus eller en cracker, kan du sjekke at filene dine
+        ser slik ut som produsenten sa de skulle, uten &aring;
+        faktisk m&aring;tte sammenligne med orginalfilene. Dette
+        er en ekstremt tidsbesparende metode.</li>
+</ul>
+<br />
+
+<h4><a name="part5">HVA BETYR KRYPTERING FOR DEG?</a></h4>
+
+<ol>
+   <li> At du kan lage elektroniske signaturer som ingen kan forfalske.</li>
+   <li> At du kan betale ting gjennom elektronisk betalingsformidling
+        uten risiko for at uvedkommende kan se hva du kj&oslash;pte.</li>
+   <li> At du kan betale ting gjennom elektronisk betalingsformidling
+        uten risiko for at uvedkommende kan f&aring; tak i din
+        kontoinformasjon og misbruke din konto eller dine
+        elektroniske penger.</li>
+   <li> At du kan kontrollere at uvedkommende ikke skal f&aring; lov
+        til &aring; lese en tekst du har skrevet, selv om de
+        klarer &aring; stjele datafilen teksten ligger p&aring;.</li>
+</ol>
+
+<p>
+Det er allment akseptert blant fagfolk at god datasikkerhet i
+nettverk og &aring;pne systemer krever bruk av sterk
+kryptografi. Kryptografiske metoder kan beskytte data under
+lagring og overf&oslash;ring, og de kan brukes til autentisering
+istedenfor passord (som er en meget svak metode).
+</p>
+
+<p>
+N&aring;r sikkerheten i dagens datasystemer er for d&aring;rlig,
+skyldes dette i stor grad begrensninger i tilgjengeligheten av
+skikkelige krypto-produkter. Mye av teknologien vi bruker stammer
+fra USA, og som nevnt, er det en rekke restriksjoner og
+begrensninger p&aring; mulighetene for &aring; eksportere
+b&aring;de sterke og svakere krypto-produkter fra USA.</p>
+
+<p>Uten kryptering sender du i praksis elektroniske "postkort",
+slik at alle som kommer over en melding, ogs&aring; kan lese
+den. Kryptering er ikke noe annet enn en konvolutt rundt en tekst,
+og denne skal v&aelig;re sterk nok til &aring; motst&aring;
+fors&oslash;k p&aring; &aring;pning. De som vil forby deg &aring;
+bruke kryptering vil alts&aring; i praksis forby deg &aring; bruke
+konvolutt rundt meldingene dine - de vil med andre ord ta fra deg
+retten til privat kommunikasjon.</p>
+
+<p>Lovgivningen i USA er antagelig den st&oslash;rste
+bremseklossen for &aring; f&aring; tatt i bruk krypto-produkter i
+hverdagsprodukter. Kryptografisk teknologi blir imidlertid
+etterhvert ogs&aring; tilgjengelig andre land enn USA</p>
+<br />
+
+<h4><a name="part6">TILFELLER DER DET ER &Oslash;NSKELIG &Aring;
+KUNNE SKAFFE SEG TILGANG TIL HEMMELIGE KODEN&Oslash;KLER</a></h4>
+
+<ul>
+   <li> Pr&oslash;ve &aring; begrense kriminalitet ved &aring;
+        gj&oslash;re det lettere for etterforskere &aring;
+        f&aring; tilgang til informasjon, f.eks. der det er
+        mistanke om:
+   <ul>
+       <li> Barneporno, bombeoppskrifter, smugling, terrorisme</li>
+       <li> Opphavsrettslige krenkelser</li>
+       <li> Misbruk av betalingsmidler.</li>
+   </ul></li>
+
+    <li>
+        Begrensninger i bruk av kryptografi vil gi ordensmakten bedre
+        evne til innsyn i opplysninger lagret elektronisk, i
+        forbindelse med etterforskning av forbrytelser.</li>
+   <li> N&aring;r den som hadde n&oslash;kkelen ikke er i stand til
+        &aring; gi den fra seg f.eks.  etter en ulykke, eller data
+        som inng&aring;r i en del av et arveoppgj&oslash;r.</li>
+   <li> N&aring;r innholdet i 'forseglede' data skal gj&oslash;res
+        tilgjengelige etter en rettslig avgj&oslash;relse.</li>
+</ul>
+<br />
+
+<h4><a name="part7">TILFELLER DER DET ER NYTTIG &Aring; HA
+HEMMELIGE KODEN&Oslash;KLER SOM ALDRI BLIR GJORT KJENT</a></h4>
+
+<ul>
+   <li> N&aring;r n&oslash;kkelen kun brukes til &aring; signere
+        data er det som regel &oslash;nskelig at signaturen aldri
+        skal kunne forfalskes.</li>
+   <li> Det er noen hemmeligheter det er &oslash;nskelig
+        &aring; kunne g&aring; i graven med.</li>
+</ul>
+<br />
+
+<h4><a name="part8">N&Oslash;KKELDEPONERING</a></h4>
+
+<p>N&oslash;kkeldeponering (engelsk: <em>key escrow</em>) er en metode
+for &aring; sikre at enkelte utenforst&aring;ende har muligheten
+til &aring; dekryptere meldinger som er beskyttet med en sterk
+krypteringsmetode. Ett eller flere n&oslash;kkeldeponier har da
+kopier av alle n&oslash;klene som brukes, og kan dermed dekryptere
+meldinger.</p>
+
+<p>N&oslash;kkeldeponeringen kan enten v&aelig;re frivillig eller
+tvungen. Det omstridte amerikanske Clipper-initiativet er et
+eksempel p&aring; tvungen n&oslash;kkeldeponering som hvis det
+blir gjennomf&oslash;rt bl.a. vil gi den amerikanske ordensmakten
+mulighet til &aring; avlytte alle telefonsamtaler selv om disse
+krypteres.</p>
+
+<p>Et eksempel p&aring; frivillig n&oslash;kkeldeponering kan
+v&aelig;re en liten bedrift der innehaveren beskytter sine data
+med kryptering. Da vil det kunne v&aelig;re &oslash;nskelig
+&aring; lagre en kopi av krypteringsn&oslash;kkelen hos en eller
+flere tiltrodde tredjeparter som en "livsforsikring" slik at
+firmaet ikke n&oslash;dvendigvis g&aring;r under selv om
+innehaveren faller under en trikk.</p>
+<br />
+
+<h4><a name="part9">HVORFOR ER DET I PRAKSIS UMULIG &Aring;
+FORHINDRE BRUK AV STERK KRYPTERING?</a></h4>
+
+<p>Fordi dette krever b&aring;de at det er mulig &aring; hindre
+kryptert materiale &aring; flyte fritt og &aring; fjerne alle
+kryptografiske programmer som allerede er i bruk.  Begge deler er
+av tekniske &aring;rsaker n&aelig;r umulig. Et forbud vil derfor
+v&aelig;re meget vanskelig &aring; h&aring;ndheve.</p>
+
+<p>De tekniske &aring;rsakene til dette er mange, her nevnes tre:</p>
+
+<ol>
+  <li> <b>Skjulte kanaler.</b> Dette er
+       informasjonsstr&oslash;mmer som skjuler en annen
+       informasjonsstr&oslash;m. Man kan f.eks. velge om det
+       mellom ord skal v&aelig;re ett eller to mellomrom. Ett
+       mellomrom betyr '0' og to betyr '1'. Teksten:
+<pre>
+                "dette er  en hemmelig  melding"
+</pre>
+     ... vil da kunne dekodes til strengen '0101'. Dersom
+     b&aring;de sender og mottager kjenner til denne
+     kodemekanismen, kan et program kode en hemmelig melding i en
+     ellers helt uskyldig utseende tekst. Tilsvarende metoder
+     finnes for bilder, lyd og alle andre elektroniske medier.
+
+     Poenget er alts&aring; at meldinger kan gjemmes p&aring; en
+     slik m&aring;te at utenforst&aring;ende ikke en gang kan
+     oppdage at det er noen melding der, og at dette kan
+     gj&oslash;res p&aring; utallige m&aring;ter. Gitt at det er
+     mulig &aring; kode meldinger i skjulte kanaler, og at det er
+     umulig &aring; oppdage dem, s&aring; betyr dette at det
+     dermed ogs&aring; er umulig &aring; oppdage om en gitt
+     melding er kodet med en "sterk" kryptografisk kode.</li>
+
+  <li> <b>Tilgjengelighet av krypteringsprogrammer.</b>
+     Programmer for &aring; utf&oslash;re sterk kryptering finnes
+     i dag tilgjengelig over Internett, og metodene de benytter
+     er beskrevet i fritt tilgjengelig litteratur.  Det er helt
+     urimelig og urealistisk &aring; tro at denne kunnskapen skal
+     kunne fjernes ved et pennestr&oslash;k.</li>
+
+  <li> <b>Uklarhet om hva som er en kode.</b>
+
+  <ul>
+   <li> En kryptert tekst kan framst&aring; som en
+     tilfeldig str&oslash;m av tegn. Det er derfor ofte umulig
+     &aring; si om noe er en kryptert tekst, eller bare
+     "s&oslash;ppel".</li>
+
+  <li> Dersom det blir forbud mot koder som myndighetene
+     ikke kan knekke, blir det straks problematisk &aring;
+     avgrense hva som utgj&oslash;r en slik kode. Dersom
+     f.eks. ingen i politiet kunne snakke arabisk, ville arabisk
+     kunne regnes som en kryptografisk kode; men det ville likevel
+     v&aelig;re urimelig &aring; gj&oslash;re det forbudt &aring;
+     snakke arabisk i telefonen. Kryptering er analogt med dette.</li>
+     </ul></li>
+</ol>
+
+<p>P&aring; grunn av disse forholdene vil fors&oslash;k p&aring;
+&aring; hindre bruk av kryptografi v&aelig;re d&oslash;mt til
+&aring; mislykkes, selv om tilgjengeligheten vil bli
+vanskeliggjort. De som vil bli rammet, er lovlydige borgere og
+bedrifter, mens de som gir blaffen i regelverket (ikke
+n&oslash;dvendigvis fordi de er kriminelle) likevel lett vil kunne
+skaffe seg de verkt&oslash;yene de trenger.</p>
+
+<p>Vi mener derfor at fors&oslash;k p&aring; &aring; hindre bruk
+av kryptografi fra politiker side ikke vil kunne gj&oslash;re noe
+annet enn &aring; skape et inntrykk av at de "gj&oslash;r noe",
+mens situasjonen i virkeligheten ikke er endret p&aring; annet vis
+enn at lovlydige borgere mister rettigheter.</p>
+<br />
+
+<h4><a name="part10">HVORDAN KAN KRYPTERING FORHINDRE DATAKRIMINALITET?
+</a></h4>
+
+<p>Det fremholdes ofte at adgang til sterk kryptografi vil
+gj&oslash;re livet lettere for forbrytere. Det som ikke nevnes, er
+at manglende tilgjengelighet av skikkelig kryptografi
+muliggj&oslash;r datakriminalitet som ellers kunne ha v&aelig;rt
+forhindret, jfr. pkt. (3) og (4) over.</p>
+
+<p>Siden datakriminalitet ofte er sv&aelig;rt vanskelig &aring;
+oppdage, blir det tilsvarende viktig &aring; ha god beskyttelse
+mot den - slik som kryptografiske produkter - i utgangspunktet.</p>
+
+<p>Selv om det per idag ikke foreligger forslag i Norge om &aring;
+forby sterk kryptografi, finnes det slike forslag, og til og med
+vedtatte lover, i andre land. Vi mener derfor at det er grunn til
+&aring; v&aelig;re p&aring; vakt ogs&aring; her i landet.  Norge
+kan ogs&aring; risikere &aring; bli bundet opp av vedtak innen EU
+og E&Oslash;S.</p>
+<br />
+
+<h4><a name="part11">KRYPTERINGSMETODER SOM KAN AVLYTTES</a></h4>
+
+<p>I mange land er det planer om &aring; tilby krypto-tjenester
+som muliggj&oslash;r avlytting. USAs Clipper-initiativ er det mest
+kjente. Slike systemer vil beskytte mot utenforst&aring;ende
+(forutsatt at det brukes sterke metoder), mens politi og andre
+offentlige myndigheter har mulighet til &aring; skaffe seg kopi av
+n&oslash;klene som brukes, fortrinnvis etter rettslig kjennelse
+eller lignende.</p>
+
+<p>Avhengig av hvordan tilgangen til n&oslash;kler kontrolleres,
+vil mange kunne akseptere et slikt system. Det er imidlertid mange
+&aring;rsaker til at andre ikke &oslash;nsker &aring; basere
+sikkerheten sin p&aring; avlyttbare algoritmer.</p>
+
+<ul>
+   <li> Bedrifter &oslash;nsker ikke &aring; ta sjansen p&aring;
+        (selv en antatt liten) mulighet for at "utro tjenere"
+        innen det offentlige skal f&aring; tak i og lekke
+        opplysninger.</li>
+   <li> Privatpersoner eller andre kan ha opplysninger de ikke
+        &oslash;nsker at myndighetene skal kunne f&aring; tak i
+        p&aring; noen m&aring;te. Det beh&oslash;ver slett ikke
+        &aring; v&aelig;re noe suspekt i et slikt &oslash;nske -
+        for mange er det en del av privatlivets fred &aring;
+        slippe &aring; gi flere opplysninger om seg selv enn
+        n&oslash;dvendig.</li>
+   <li> En del vil ikke stole p&aring; at avlyttingen blir
+        kontrollert strengt nok.  Ut fra opplysninger om
+        telefonavlytting b&aring;de i Norge og i andre land kan
+        det v&aelig;re gode grunner til en slik skepsis.</li>
+</ul>
+
+<p>Vi mener at et avlyttbart system godt kan tilbys som en
+offentlig tjeneste, men ikke uten at annen sterk kryptografi er
+tilgjengelig for dem som &oslash;nsker det.</p>
+<br />
+
+<h4><a name="part13">NHDS RAPPORT OM UTVIKLING AV NASJONAL
+KRYPTOPOLITIKK (6. APRIL 2001)</a></h4>
+
+<p>
+Denne rapporten er i all hovedsak positiv i forhold til EFNs
+vurderinger og anbefalinger.  I en kort oppsummering av rapporten
+i hovedpunkt 12 fremmes det visse anbefalinger for en nasjonal
+kryptopolitikk:
+</p>
+
+<ol>
+<li>
+    En grunnleggende positiv holding til bruk av
+    kryptering.</li>
+<li>
+    Avvisning av obligatorisk deponering av
+    krypteringsn&oslash;kler som en innehar som privatperson. </li>
+<li>
+    Oppmerksomhet rettet mot koordinering p&aring; et
+    internasjonalt, ikke bare europeisk niv&aring;.</li>
+<li>
+    Tilrettelegging av forholdene for sterkere vekst i
+    nasjonal kryptoindustri.</li>
+<li>
+    Minst mulig belastning av brukergrupper ved implementering
+    av politikken.</li>
+<li>
+    Utforming av politikken i tr&aring;d med forslaget om bruk
+    av elektroniske signaturer (jf NOU 2001:10).</li>
+<li>
+    Utforming av politikken slik at den ikke krever
+    endring i de alminnelige regler for saksbehandling i
+    offentlig forvaltning, men sikrer bedre realisering av
+    forvaltningslovens m&aring;lsettinger ved overgang til
+    elektronisk forvaltning. </li>
+</ol>
+
+<p>
+Rapporten finnes fra:<br />
+<a href="http://odin.dep.no/nhd/norsk/p10001865/p10001878/024101-990051/index-dok000-n-n-a.html">
+http://odin.dep.no/nhd/norsk/p10001865/p10001878/024101-990051/index-dok000-n-n-a.html</a>
+</p>
+
+<p>
+Det finnes ogs&aring; et sammendrag av rapporten her:<br />
+<a href="http://odin.dep.no/nhd/norsk/p10001865/p10001878/024101-990058/index-dok000-n-n-a.html">
+http://odin.dep.no/nhd/norsk/p10001865/p10001878/024101-990058/index-dok000-n-n-a.html</a>
+</p>
+
+<br />
+
+<h4><a name="part12">REFERANSER</a></h4>
+
+B&oslash;ker:
+
+<ul>
+   <li> Scheiner, Bruce: (1994), <em>Applied Cryptography:
+     Protocols, Algorithms and Source Code in C.</em>
+     John Wiley & Sons. Inc.</li>
+
+   <li> Garfinkel, Simson: (1995), <em>PGP - Pretty Good Privacy.</em>
+     O'Reilly & Associates, Inc.</li>
+</ul>
+
+Artikler:
+<ul>
+   <li> Peachey, D.: "Euro-Clipper Chip Scheme Proposed".
+     <em>Communications Week</em> no. 151 (18 Sept. 1995) s. 1-81.</li>
+
+   <li> Thorel, J.: "EC Plans Encryption Rules in Bid
+     to Police Information Superhighway".
+     <em>Nature</em> vol. 377 no. 6547 (28 Sept. 1995) s. 275.</li>
+</ul>
+
+Internett:
+<ul>
+   <li> <a href="http://csrc.ncsl.nist.gov/">
+        http://csrc.ncsl.nist.gov/</a><br />
+        (National Institute of Standards and Techology. Computer
+        Security Resource Clearinghouse)</li>
+   <li> <a href="http://www.faqs.org/faqs/cryptography-faq/">
+        http://www.faqs.org/faqs/cryptography-faq/</a><br />
+        (Omfattende dokument med sp&oslash;rsm&aring;l og svar om
+        kryptering; opprinnelig sci.crypt FAQ.)</li>
+   <li> <a href="http://www.uninett.no/pca">
+        http://www.uninett.no/pca</a><br />
+        (UNINETTs kryptotjeneste)</li>
+</ul>
+
+<hr /><p />
+
+<p><b>
+Elektronisk Forpost Norge er en rettighetsorganisasjon som jobber
+med medborgerskap og juridiske rettigheter i IT-samfunnet.<br />
+<a href="http://www.efn.no/">www.efn.no.</a></b></p>
+
+<p>
+Dette dokumentets adresse:<br />
+http://folk.uio.no/thomas/efn/krypto-notat.html</p>
+
+<hr />
+
+<p>
+<em>Sist oppdatert av &nbsp; <a href="mailto:thomas@ifi.uio.no">Thomas
+Gramstad</a> &nbsp; &nbsp; 4. februar &nbsp; 2002.</em></p>
+
+<p class="plain">
+<a href="http://www.eff.org/br/" target="_top">
+<img src="http://folk.uio.no/thomas/linux/images/blueribbon.gif"
+alt="Support the Blue Ribbon Campaign for Free Speech!"
+width="143" height="30" border="0"></a>
+<a href="http://www.anybrowser.org/campaign/" target="_top">
+<img src="http://folk.uio.no/thomas/linux/images/anybrowser02.gif"
+alt="Best Viewed With Any Browser" width="88" height="31" border="0"></a>
+<a href="http://validator.w3.org/check/referer" target="_top">
+<img src="http://folk.uio.no/thomas/linux/images/valid-html40.png"
+alt="Valid HTML 4.0!" width="88" height="31" border="0"></a>
+<a href="http://www.noframes.org/" target="_top">
+<img src="http://folk.uio.no/thomas/linux/images/framesfree.gif"
+width="88" height="31" alt="Frames Free! Ribbon Campaign" border="0"></a>
+<a href="http://www.emacs.org/" target="_top">
+<img src="http://folk.uio.no/thomas/linux/images/emacs01.png"
+alt="Created with GNU Emacs" width="88" height="31" border="0"></a>
+<a href="http://www.linux.org/" target="_top">
+<img src="http://folk.uio.no/thomas/linux/images/linuxpowered.png"
+width="110" height="44" 
+alt="www.linux.org - a GNU and better computer for you" border="0"></a>
+</p>
+
+</body>
+</html>
